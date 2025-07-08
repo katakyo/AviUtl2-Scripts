@@ -20,20 +20,20 @@ end
 
 if bar_height > 0 then
     -- 色の取得
-    local r, g, b = RGB(color)
-    r = r / 256
-    g = g / 256
-    b = b / 256
+    local r, g, b = obj.getcolor(color)
+    r = r / 255
+    g = g / 255
+    b = b / 255
     local a = 1.0 - (obj.track2 / 100)  -- 透明度
     
     -- 上部の黒帯
-    obj.load("figure", "四角形", color, 1)
+    obj.load("figure", "四角形")
     obj.drawpoly({
         -obj.screen_w/2, obj.screen_h/2, 0,
         obj.screen_w/2, obj.screen_h/2, 0,
         obj.screen_w/2, obj.screen_h/2 - bar_height, 0,
-        -obj.screen_w/2, obj.screen_h/2 - bar_height, 0,
-        
+        -obj.screen_w/2, obj.screen_h/2 - bar_height, 0
+    }, {
         r, g, b, a,
         r, g, b, a,
         r, g, b, a,
@@ -45,8 +45,8 @@ if bar_height > 0 then
         -obj.screen_w/2, -obj.screen_h/2 + bar_height, 0,
         obj.screen_w/2, -obj.screen_h/2 + bar_height, 0,
         obj.screen_w/2, -obj.screen_h/2, 0,
-        -obj.screen_w/2, -obj.screen_h/2, 0,
-        
+        -obj.screen_w/2, -obj.screen_h/2, 0
+    }, {
         r, g, b, a,
         r, g, b, a,
         r, g, b, a,
