@@ -1,7 +1,6 @@
 --track0:高さ(%),0,50,15
 --track1:ぼかし,0,100,0
 --track2:透明度,0,100,0
---color:0x000000
 
 -- シネマスコープ（2.35:1）のレターボックスを描画
 local aspect_ratio = 2.35
@@ -19,11 +18,8 @@ else
 end
 
 if bar_height > 0 then
-    -- 色の取得
-    local r, g, b = obj.getcolor(color)
-    r = r / 255
-    g = g / 255
-    b = b / 255
+    -- 黒色固定
+    local r, g, b = 0, 0, 0
     local a = 1.0 - (obj.track2 / 100)  -- 透明度
     
     -- 上部の黒帯
