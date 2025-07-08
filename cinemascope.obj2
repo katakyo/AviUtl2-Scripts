@@ -1,6 +1,6 @@
 --track0:高さ(%),0,50,15
---track1:ぼかし,0,100,0
---track2:透明度,0,100,0
+--track1:透明度,0,100,0
+--color:0x000000
 
 -- シネマスコープ（2.35:1）のレターボックスを描画
 local aspect_ratio = 2.35
@@ -18,18 +18,22 @@ else
 end
 
 if bar_height > 0 then
-    -- 黒色固定
-    local r, g, b = 0, 0, 0
-    local a = 1.0 - (obj.track2 / 100)  -- 透明度
+    -- 色の取得
+    local r, g, b = RGB(color)
+    r = r / 256
+    g = g / 256
+    b = b / 256
+    local a = 1.0 - (obj.track1 / 100)  -- 透明度
+    
+    local vertex = {}
     
     -- 上部の黒帯
-    obj.load("figure", "四角形")
-    obj.drawpoly({
+    table.insert(vertex, {
         -obj.screen_w/2, obj.screen_h/2, 0,
         obj.screen_w/2, obj.screen_h/2, 0,
         obj.screen_w/2, obj.screen_h/2 - bar_height, 0,
-        -obj.screen_w/2, obj.screen_h/2 - bar_height, 0
-    }, {
+        -obj.screen_w/2, obj.screen_h/2 - bar_height, 0,
+        
         r, g, b, a,
         r, g, b, a,
         r, g, b, a,
@@ -37,20 +41,18 @@ if bar_height > 0 then
     })
     
     -- 下部の黒帯
-    obj.drawpoly({
+    table.insert(vertex, {
         -obj.screen_w/2, -obj.screen_h/2 + bar_height, 0,
         obj.screen_w/2, -obj.screen_h/2 + bar_height, 0,
         obj.screen_w/2, -obj.screen_h/2, 0,
-        -obj.screen_w/2, -obj.screen_h/2, 0
-    }, {
+        -obj.screen_w/2, -obj.screen_h/2, 0,
+        
         r, g, b, a,
         r, g, b, a,
         r, g, b, a,
         r, g, b, a
     })
     
-    -- ぼかし効果
-    if obj.track1 > 0 then
-        obj.effect("ぼかし", "範囲", obj.track1, "サイズ固定", 1)
-    end
+    obj.load("figure", "四角形", color, 1)
+    obj.drawpoly(vertex)
 end
