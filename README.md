@@ -6,7 +6,7 @@
 https://github.com/user-attachments/assets/d200ad97-c4c4-4e29-91fc-109ba9f62a72
 
 # ダウンロード方法
-sorce_codeのzipファイルを[ダウンロード](https://github.com/katakyo/AviUtl2-Scripts/releases/tag/AviUtl2-Scripts_v0.1.0)して使用してください
+Source codeのzipファイルを[ダウンロード](https://github.com/katakyo/AviUtl2-Scripts/releases/tag/AviUtl2-Scripts_v0.1.0)して使用してください
 
 
 zipファイルを解凍して、各ディレクトリに一つスクリプト(ex: xxx.obj2)と説明の入ったREADME.mdが入っていますのでスクリプトのみ取り出して
